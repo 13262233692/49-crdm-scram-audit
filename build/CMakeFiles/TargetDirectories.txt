@@ -1,0 +1,3 @@
+D:/SOLO-11/49-crdm-scram-audit/build/CMakeFiles/crdm_scram_audit.dir
+D:/SOLO-11/49-crdm-scram-audit/build/CMakeFiles/ALL_BUILD.dir
+D:/SOLO-11/49-crdm-scram-audit/build/CMakeFiles/ZERO_CHECK.dir
