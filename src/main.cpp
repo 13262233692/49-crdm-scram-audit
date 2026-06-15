@@ -13,6 +13,7 @@
 #include "stream_unpacker.h"
 #include "wavelet_packet.h"
 #include "energy_analyzer.h"
+#include "fatigue_analyzer.h"
 #include "raii_utils.h"
 
 using namespace crdm;
@@ -160,6 +161,11 @@ static PerFileResult process_single_file(const std::string& filename, const Opti
     EnergyBandAnalyzer analyzer;
     analyzer.init(num_ch);
 
+    FatigueAnalyzer fatigue;
+    fatigue.init(sr, 128);
+
+    uint64_t last_block_end_ts = 0;
+
     std::vector<float> channel_buf(opts.block_size * num_ch);
     std::vector<float> frame_values(num_ch);
     std::array<std::vector<float>, WaveletPacketDecomposer::NUM_SUBBANDS> subbands;
@@ -207,6 +213,23 @@ static PerFileResult process_single_file(const std::string& filename, const Opti
                 analyzer.process_channel_block(ch, subbands);
             }
             analyzer.finalize_frame(block_idx, block_start_ts);
+
+            {
+                const auto& be = analyzer.per_frame_energy().back();
+                double block_global_energy[8] = {0};
+                for (int i = 0; i < 8; ++i) block_global_energy[i] = be.energy[i];
+                const uint64_t ns_per_sample = static_cast<uint64_t>(1e9 / (sr * 1000.0));
+                const uint64_t block_ns = static_cast<uint64_t>(block_fill) * ns_per_sample;
+                double block_duration_ns = last_block_end_ts > 0
+                    ? (block_start_ts + block_ns) - last_block_end_ts
+                    : static_cast<double>(block_ns);
+                if (block_duration_ns <= 0) block_duration_ns = static_cast<double>(block_ns);
+                fatigue.process_block(block_global_energy, be.ratio,
+                                      be.total_energy, block_start_ts,
+                                      static_cast<uint64_t>(block_duration_ns), block_idx);
+                last_block_end_ts = block_start_ts + block_ns;
+            }
+
             ++block_idx;
             processed += block_fill;
             block_fill = 0;
@@ -309,6 +332,12 @@ static PerFileResult process_single_file(const std::string& filename, const Opti
         "================================================================\n\n",
         unpacker.has_errors() ? "Frames with anomalies detected (see counts above)"
                               : "Clean scan - no frame anomalies detected");
+
+    std::string fatigue_spindle = fatigue.render_ascii_spindle_report(56);
+    std::fprintf(out_fp, "%s", fatigue_spindle.c_str());
+
+    std::string fatigue_trend = fatigue.render_miner_trend(60, 12);
+    std::fprintf(out_fp, "%s", fatigue_trend.c_str());
 
     result.success = true;
     return result;

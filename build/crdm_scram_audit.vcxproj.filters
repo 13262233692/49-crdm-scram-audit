@@ -4,6 +4,9 @@
     <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\energy_analyzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\fatigue_analyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

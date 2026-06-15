@@ -393,6 +393,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\energy_analyzer.cpp" />
+    <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\fatigue_analyzer.cpp" />
     <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\main.cpp" />
     <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\memory_mapped_file.cpp" />
     <ClCompile Include="D:\SOLO-11\49-crdm-scram-audit\src\stream_unpacker.cpp" />
