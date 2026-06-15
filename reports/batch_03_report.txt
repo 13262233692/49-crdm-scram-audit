@@ -1,0 +1,40 @@
+================================================================
+  CRDM Scram Acoustic Emission - Energy Band Audit Report
+  (RAII Resource-Safe Build)
+================================================================
+  File:              malformed_tests/batch_03.bin
+  Channels:          4
+  Declared samples:  8192
+  Safe samples:      8192
+  Sample rate:       500 kHz
+  Blocks analyzed:   1
+  Processing time:   0.010 seconds
+  Throughput:        0.83 MSamples/sec
+----------------------------------------------------------------
+  Frame Integrity:
+    Total frames scanned:  8192
+    Good frames:           8192
+    Bad timestamp frames:  0
+    Bad bounds frames:     0
+    Bad value frames:      0
+    Aborted:               NO
+
+  GLOBAL ENERGY BAND RATIO MATRIX (3-level WPD, db4)
+  -------------------------------------------------
+
+  Sub-band              Energy            Ratio      Histogram
+  --------              ------            -----      ---------
+  Band 0 (0-62.5 kHz)       3.799829e-01    0.00583%   |
+  Band 1 (62.5-125 kHz)     4.483938e-01    0.00688%   |
+  Band 2 (125-187.5 kHz)    3.788268e-01    0.00581%   |
+  Band 3 (187.5-250 kHz)    2.870365e+00    0.04402%   |
+  Band 4 (250-312.5 kHz)    2.623066e+00    0.04023%   |
+  Band 5 (312.5-375 kHz)    3.498334e+00    0.05366%   |
+  Band 6 (375-437.5 kHz)    6.864000e+00    0.10528%   |
+  Band 7 (437.5-500 kHz)    6.502859e+03   99.73829%   |###########################################################
+  ------------------------------------------------------------
+  TOTAL                   6.519922e+03  100.00000%
+================================================================
+  Audit summary: Clean scan - no frame anomalies detected
+================================================================
+

@@ -1,0 +1,21 @@
+# Batch test file list for CRDM audit
+malformed_tests/test01_oversized_declare.bin
+malformed_tests/test02_truncated.bin
+malformed_tests/test03_bad_timestamps.bin
+malformed_tests/test04_bad_voltage.bin
+malformed_tests/test05_clean.bin
+malformed_tests/batch_00.bin
+malformed_tests/batch_01.bin
+malformed_tests/batch_02.bin
+malformed_tests/batch_03.bin
+malformed_tests/batch_04.bin
+malformed_tests/batch_05.bin
+malformed_tests/batch_06.bin
+malformed_tests/batch_07.bin
+malformed_tests/batch_08.bin
+malformed_tests/batch_09.bin
+malformed_tests/batch_10.bin
+malformed_tests/batch_11.bin
+malformed_tests/batch_12.bin
+malformed_tests/batch_13.bin
+malformed_tests/batch_14.bin
